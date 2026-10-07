@@ -71,6 +71,8 @@ pandoc "$WORK_DIR/document.md" \
 	--resource-path="$ROOT_DIR" \
 	--output="$ROOT_DIR/index.html"
 
+python3 "$BUILD_DIR/inject-diagrams.py" "$ROOT_DIR/index.html" "$BUILD_DIR/.cache"
+
 echo "BUILD: printing the PDF"
 chrome="$(find_chrome)" || {
 	echo "ERROR: no Chromium or Chrome found; set CHROME to its path" >&2

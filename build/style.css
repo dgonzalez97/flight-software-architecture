@@ -1,24 +1,26 @@
 :root {
-	--ink: #1a1c20;
-	--muted: #5b6270;
-	--rule: #d8dce3;
-	--accent: #1f4e6b;
-	--surface: #f5f6f8;
+	--ink: #243746;
+	--muted: #5f7383;
+	--rule: #d4dfe6;
+	--accent: #294c69;
+	--accent-soft: #43a0b2;
+	--link: #25677a;
+	--surface: #f3f7f9;
 	--page: #ffffff;
 }
 
 html {
-	font-size: 11pt;
+	font-size: 10.7pt;
 }
 
 body {
 	margin: 0 auto;
-	max-width: 46rem;
-	padding: 3rem 1.5rem 5rem;
+	max-width: 162mm;
+	padding: 2rem 1.5rem 4rem;
 	background: var(--page);
 	color: var(--ink);
 	font-family: "Charter", "Bitstream Charter", "Source Serif 4", Georgia, serif;
-	line-height: 1.6;
+	line-height: 1.66;
 	hyphens: auto;
 }
 
@@ -27,9 +29,9 @@ h2,
 h3,
 h4 {
 	font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-	line-height: 1.25;
+	line-height: 1.3;
 	text-wrap: balance;
-	margin: 2.2em 0 0.6em;
+	margin: 1.5em 0 0.45em;
 }
 
 h1 {
@@ -40,7 +42,7 @@ h1 {
 
 h2 {
 	font-size: 1.5rem;
-	padding-bottom: 0.3em;
+	padding-bottom: 0.25em;
 	border-bottom: 1px solid var(--rule);
 	color: var(--accent);
 }
@@ -59,11 +61,11 @@ h4 {
 p,
 ul,
 ol {
-	margin: 0 0 1em;
+	margin: 0 0 0.8em;
 }
 
 li {
-	margin-bottom: 0.3em;
+	margin-bottom: 0.2em;
 }
 
 code {
@@ -78,7 +80,7 @@ pre {
 	background: var(--surface);
 	border: 1px solid var(--rule);
 	border-radius: 4px;
-	padding: 0.9rem 1rem;
+	padding: 0.7rem 0.85rem;
 	overflow-x: auto;
 	line-height: 1.45;
 }
@@ -92,14 +94,14 @@ pre code {
 blockquote {
 	margin: 1.2em 0;
 	padding-left: 1rem;
-	border-left: 3px solid var(--accent);
+	border-left: 3px solid var(--accent-soft);
 	color: var(--muted);
 }
 
 table {
 	width: 100%;
 	border-collapse: collapse;
-	margin: 1.2em 0;
+	margin: 1em 0;
 	font-size: 0.92em;
 	font-variant-numeric: tabular-nums;
 }
@@ -107,7 +109,7 @@ table {
 th,
 td {
 	border-bottom: 1px solid var(--rule);
-	padding: 0.45em 0.6em;
+	padding: 0.35em 0.55em;
 	text-align: left;
 	vertical-align: top;
 }
@@ -121,13 +123,18 @@ th {
 }
 
 figure {
-	margin: 1.6em 0;
+	margin: 1.2em 0;
 	text-align: center;
 }
 
+/* A diagram is sized by its own drawing, capped so a tall one stays on one page
+   rather than spilling across two. Mermaid writes width="100%" and an inline
+   max-width, and both have to give way for the cap to apply. */
 figure.diagram svg {
-	max-width: 100%;
+	width: auto !important;
 	height: auto;
+	max-width: 100% !important;
+	max-height: 195mm;
 }
 
 img {
@@ -165,12 +172,12 @@ img {
 }
 
 a {
-	color: var(--accent);
+	color: var(--link);
 }
 
 @page {
 	size: A4;
-	margin: 20mm 18mm;
+	margin: 24mm;
 }
 
 @media print {
@@ -179,16 +186,7 @@ a {
 		padding: 0;
 	}
 
-	h2 {
-		break-before: page;
-		break-after: avoid;
-	}
-
-	h1 + h2,
-	#TOC + h2 {
-		break-before: avoid;
-	}
-
+	h2,
 	h3,
 	h4 {
 		break-after: avoid;
