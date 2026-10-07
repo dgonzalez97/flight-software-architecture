@@ -5,6 +5,10 @@ Each diagram's identifiers are renamed on the way in. Every diagram mermaid
 emits calls itself `my-svg`, scopes its whole stylesheet to `#my-svg`, and
 numbers its gradients from `color-0`, so inlining several into one page would
 make the rules of one apply to another.
+
+The new name starts with a letter because a CSS identifier may not start with a
+digit: a selector like `#23292b-my-svg` is invalid, so the whole stylesheet is
+dropped and the diagram renders in the default black.
 """
 import pathlib
 import re
@@ -19,7 +23,7 @@ def isolate(svg, prefix):
     identifiers = sorted(set(re.findall(r'\bid="([^"]+)"', svg)), key=len, reverse=True)
     for identifier in identifiers:
         quoted = re.escape(identifier)
-        renamed = f'{prefix}-{identifier}'
+        renamed = f'd{prefix}-{identifier}'
         svg = re.sub(rf'\bid="{quoted}"', f'id="{renamed}"', svg)
         svg = re.sub(rf'url\(#{quoted}\)', f'url(#{renamed})', svg)
         svg = re.sub(rf'(href=")#{quoted}"', rf'\g<1>#{renamed}"', svg)
